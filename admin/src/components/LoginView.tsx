@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Shield, Globe, Mail, Lock, User as UserIcon } from 'lucide-react';
+import { API_BASE } from '../services/api.service';
 
 interface LoginViewProps {
   onLoginWithCredentials: (email: string, password: string) => Promise<void>;
@@ -94,7 +95,7 @@ export function LoginView({ onLoginWithCredentials, onRegisterWithCredentials }:
           {authType === 'oauth' ? (
             <div className="space-y-4">
               <button
-                onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}
+                onClick={() => window.location.href = `${API_BASE}/auth/google`}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-slate-200 font-semibold hover:border-indigo-500/30 transition-all cursor-pointer shadow-sm"
               >
                 <Globe className="w-5 h-5 text-blue-400" />
@@ -102,7 +103,7 @@ export function LoginView({ onLoginWithCredentials, onRegisterWithCredentials }:
               </button>
 
               <button
-                onClick={() => window.location.href = 'http://localhost:5000/api/auth/github'}
+                onClick={() => window.location.href = `${API_BASE}/auth/github`}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-slate-200 font-semibold hover:border-indigo-500/30 transition-all cursor-pointer shadow-sm"
               >
                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
