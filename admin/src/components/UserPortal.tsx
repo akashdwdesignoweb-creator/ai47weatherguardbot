@@ -105,7 +105,7 @@ export function UserPortal({ user, onSaveLocation, onUnlinkTelegram, isLoading }
         </div>
 
         {/* Location Preferences */}
-        <div className="glass-panel rounded-3xl p-6">
+        <div className="glass-panel rounded-3xl p-6 relative z-20">
           <h3 className="font-bold text-white text-lg flex items-center gap-2">
             <CloudSun className="w-5 h-5 text-indigo-400" /> Weather Alert Location
           </h3>
@@ -131,7 +131,8 @@ export function UserPortal({ user, onSaveLocation, onUnlinkTelegram, isLoading }
                     <button
                       key={idx}
                       type="button"
-                      onClick={() => {
+                      onMouseDown={(e) => {
+                        e.preventDefault(); // Prevents losing focus before selection is made
                         const fullname = `${s.name}${s.admin1 ? `, ${s.admin1}` : ''}${s.country ? `, ${s.country}` : ''}`;
                         setLocationInput(fullname);
                         setSuggestions([]);

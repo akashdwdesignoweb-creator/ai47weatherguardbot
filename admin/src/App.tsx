@@ -31,16 +31,45 @@ export default function App() {
     updateStatus,
   } = useAdmin(token);
 
-  // Fetch admin dashboard details immediately if admin logs in
+  // Fetch admin dashboard details immediately and poll to keep in sync
   useEffect(() => {
-    if (user && user.role === 'admin') {
+    if (!user || user.role !== 'admin') return;
+
+    fetchAdminData();
+
+    const interval = setInterval(() => {
       fetchAdminData();
-    }
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [user, fetchAdminData]);
+
+  // Auto-poll user status if currently pending to detect admin approval
+  useEffect(() => {
+    if (!user || user.status !== 'pending' || !token) return;
+
+    const interval = setInterval(() => {
+      fetchProfile();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [user, token, fetchProfile]);
 
   // Combine error displays
   const errorMsg = error || adminError;
   const successMsg = success;
+
+  // Show splash loading screen to prevent login flickering while fetching initial profile
+  if (isLoading && !user) {
+    return (
+      <div className="min-h-screen bg-[#0b0f19] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <RefreshCw className="w-8 h-8 text-indigo-500 animate-spin" />
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest text-indigo-400">Verifying session...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

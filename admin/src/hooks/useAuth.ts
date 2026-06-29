@@ -7,7 +7,7 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(!!localStorage.getItem('token'));
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');

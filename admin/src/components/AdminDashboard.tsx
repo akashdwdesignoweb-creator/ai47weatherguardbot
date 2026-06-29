@@ -155,11 +155,17 @@ export function AdminDashboard({ stats, users, onUpdateStatus, onRefresh }: Admi
                         <td className="p-4">
                           <StatusBadge status={u.status} />
                         </td>
-                        <td className="p-4 text-xs font-semibold">
+                        <td className="p-4">
                           {u.telegramChatId ? (
-                            <span className="text-emerald-400 bg-emerald-500/5 px-2 py-1 rounded border border-emerald-500/10">Linked ({u.telegramChatId})</span>
+                            <div className="flex flex-col gap-1 select-all">
+                              <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded uppercase tracking-wider w-fit">Linked</span>
+                              <span className="text-[10px] font-mono text-slate-400">ID: {u.telegramChatId}</span>
+                            </div>
                           ) : (
-                            <span className="text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">Unlinked (Code: {u.telegramVerificationCode})</span>
+                            <div className="flex flex-col gap-1">
+                              <span className="text-[10px] font-bold text-slate-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded uppercase tracking-wider w-fit">Unlinked</span>
+                              <span className="text-[10px] font-mono text-slate-400">Code: <span className="text-indigo-400 font-bold select-all">{u.telegramVerificationCode}</span></span>
+                            </div>
                           )}
                         </td>
                         <td className="p-4 text-right">
