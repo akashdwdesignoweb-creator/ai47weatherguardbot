@@ -6,6 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { ScheduleModule } from '@nestjs/schedule';
 
 // Controllers
+import { AppController } from './controllers/app.controller';
 import { AuthController } from './controllers/auth/auth.controller';
 import { AdminController } from './controllers/admin/admin.controller';
 
@@ -60,6 +61,7 @@ import { GithubStrategy } from './strategies/github.strategy';
     }),
   ],
   controllers: [
+    AppController,
     AuthController,
     AdminController,
   ],

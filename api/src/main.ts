@@ -13,8 +13,8 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Set global prefix for API routes
-  app.setGlobalPrefix('api');
+  // Set global prefix for API routes (excluding root path)
+  app.setGlobalPrefix('api', { exclude: ['/'] });
 
   // Enable global validation pipe
   app.useGlobalPipes(new ValidationPipe({
