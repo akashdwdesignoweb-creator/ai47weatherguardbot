@@ -16,7 +16,8 @@ export class SchedulerService {
 
   // Run every 30 seconds for quick local demonstration and validation.
   // In production, this might run once daily (e.g. '0 8 * * *' for 8:00 AM)
-  @Cron('0 8 * * *')
+  // @Cron('0 8 * * *')
+  @Cron('*/30 * * * * *') // Every 30 seconds for demonstration
   async handleWeatherAlerts() {
     this.logger.log('Scheduler triggered: Fetching and dispatching weather alerts...');
 
