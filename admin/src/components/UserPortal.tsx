@@ -205,7 +205,7 @@ export function UserPortal({ user, onSaveLocation, onUnlinkTelegram, isLoading }
                 </div>
 
                 <a
-                  href={`https://t.me/WeatherGuardService_bot?start=${user.telegramVerificationCode}`}
+                  href={`https://t.me/WeatherAi47_bot?start=${user.telegramVerificationCode}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all text-center shadow-lg shadow-blue-500/10"
